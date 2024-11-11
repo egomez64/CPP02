@@ -49,7 +49,7 @@ float Fixed::toFloat(void) const
 	return ((float)_nb / (1 << _bits));
 }
 
-float Fixed::toInt(void) const
+int Fixed::toInt(void) const
 {
 	return (static_cast<int>(Fixed::toFloat()));
 }
