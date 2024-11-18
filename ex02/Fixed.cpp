@@ -6,12 +6,12 @@ Fixed::Fixed() : _nb(0)
 }
 
 Fixed::Fixed(const int nb) {
-	this->_nb = nb * (1 << _bits);
+	this->_nb = nb << _bits;
 }
 
 Fixed::Fixed(const float nb)
 {
-	this->_nb = roundf(nb * (1 << _bits));
+	this->_nb = roundf(nb * ( 1 << _bits));
 }
 
 Fixed::Fixed(const Fixed &src)
@@ -46,7 +46,7 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
-	return ((float)_nb / (1 << _bits));
+	return (static_cast<float>(_nb) / (1 << _bits));
 }
 
 int Fixed::toInt(void) const
@@ -104,14 +104,14 @@ Fixed Fixed::operator/(Fixed const &nb)
 // Comparator
 // ----------
 
-bool Fixed::operator>(Fixed const &nb)
+bool Fixed::operator>(Fixed const &nb) const
 {
 	if (this->getRawBits() > nb.getRawBits())
 		return (true);
 	return (false);
 }
 
-bool Fixed::operator<(Fixed const &nb)
+bool Fixed::operator<(Fixed const &nb) const
 {
 	if (this->getRawBits() < nb.getRawBits())
 		return (true);
@@ -187,12 +187,9 @@ Fixed &Fixed::min(Fixed &nb1, Fixed &nb2)
 	return (nb2);
 }
 
-const Fixed &Fixed::const_min(Fixed const &nb1, Fixed const &nb2)
+const Fixed &Fixed::min(Fixed const &nb1, Fixed const &nb2)
 {
-	Fixed tmp1 = nb1;
-	Fixed tmp2 = nb2;
-
-	if (tmp1 < tmp2)
+	if (nb1 < nb2)
 		return (nb1);
 	return (nb2);
 }
@@ -204,11 +201,9 @@ Fixed &Fixed::max(Fixed &nb1, Fixed &nb2)
 	return (nb2);
 }
 
-const Fixed &Fixed::const_max(Fixed const &nb1, Fixed const &nb2) {
-	Fixed tmp1 = nb1;
-	Fixed tmp2 = nb2;
-
-	if (tmp1 > tmp2)
+const Fixed &Fixed::max(Fixed const &nb1, Fixed const &nb2)
+{
+	if (nb1 > nb2)
 		return (nb1);
 	return (nb2);
 }

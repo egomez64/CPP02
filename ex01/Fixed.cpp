@@ -6,7 +6,7 @@ Fixed::Fixed() : _nb(0)
 }
 
 Fixed::Fixed(const int nb) {
-	this->_nb = nb * (1 << _bits);
+	this->_nb = nb << _bits;
 }
 
 Fixed::Fixed(const float nb)
@@ -46,7 +46,7 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
-	return ((float)_nb / (1 << _bits));
+	return (static_cast<float>(_nb) / (1 << _bits));
 }
 
 int Fixed::toInt(void) const

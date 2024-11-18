@@ -2,7 +2,7 @@ GXX = c++
 
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-NAME = canon
+NAME = fixed
 
 SRC = main.cpp \
 		Fixed.cpp

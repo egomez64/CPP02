@@ -27,8 +27,8 @@ public:
 	Fixed operator-(Fixed const &nb);
 	Fixed operator*(Fixed const &nb);
 	Fixed operator/(Fixed const &nb);
-	bool operator>(Fixed const &nb);
-	bool operator<(Fixed const &nb);
+	bool operator>(Fixed const &nb) const;
+	bool operator<(Fixed const &nb) const;
 	bool operator==(Fixed const &nb);
 	bool operator!=(Fixed const &nb);
 	bool operator>=(Fixed const &nb);
@@ -38,9 +38,9 @@ public:
 	Fixed operator++(int);
 	Fixed operator--(int);
 	static Fixed &min(Fixed &nb1, Fixed &nb2);
-	static const Fixed &const_min(Fixed const &nb1, Fixed const &nb2);
+	static const Fixed &min(Fixed const &nb1, Fixed const &nb2);
 	static Fixed &max(Fixed &nb1, Fixed &nb2);
-	static const Fixed &const_max(Fixed const &nb1, Fixed const &nb2);
+	static const Fixed &max(Fixed const &nb1, Fixed const &nb2);
 };
 
 std::ostream &operator << (std::ostream &out, Fixed const &fx);
